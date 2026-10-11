@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Case Converter Online | Zhaib Tools</title>
+<meta name="description" content="Convert text to uppercase, lowercase, title case and sentence case instantly with our free online case converter.">
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#172033}
+header{background:#173b77;color:white;text-align:center;padding:25px}
+main{max-width:800px;margin:30px auto;padding:15px}
+.card{background:white;padding:25px;border-radius:15px;box-shadow:0 4px 18px #0001}
+textarea{width:100%;height:220px;padding:15px;border:1px solid #ccd5e0;border-radius:10px;font-size:16px}
+.buttons{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}
+button{background:#173b77;color:white;border:0;border-radius:8px;padding:13px;cursor:pointer;font-size:15px}
+button:focus-visible{outline:3px solid orange}
+.info{line-height:1.7;margin-top:30px}
+footer{text-align:center;padding:25px;color:#667085}
+a{color:#173b77}
+</style>
+</head>
+<body>
+<header><h1>Zhaib Tools</h1><p>Free Online Writing Tools</p></header>
+<main>
+<div class="card">
+<h2>Free Case Converter</h2>
+<p>Paste your text below and choose how you want to convert it.</p>
+<textarea id="text" placeholder="Enter your text here..." aria-label="Text to convert"></textarea>
+<div class="buttons">
+<button onclick="convert('upper')">UPPERCASE</button>
+<button onclick="convert('lower')">lowercase</button>
+<button onclick="convert('title')">Title Case</button>
+<button onclick="convert('sentence')">Sentence case</button>
+<button onclick="copyText()">Copy Text</button>
+<button onclick="clearText()">Clear Text</button>
+</div>
+<p id="message" role="status" aria-live="polite"></p>
+</div>
+<section class="info">
+<h2>How to Use the Case Converter</h2>
+<p>Enter or paste your text, then select a conversion button. The converted text appears in the same box, ready to copy.</p>
+<h3>What Is Title Case?</h3>
+<p>Title Case capitalizes the first letter of each word. It is useful for simple headings and titles.</p>
+<h3>What Is Sentence Case?</h3>
+<p>Sentence case capitalizes the first letter of each sentence, making paragraphs easier to read.</p>
+<p><a href="/">Back to Word Counter</a></p>
+</section>
+</main>
+<footer>© 2026 Zhaib Tools</footer>
+<script>
+const input=document.getElementById('text');
+const message=document.getElementById('message');
+function convert(type){
+let t=input.value;
+if(type==='upper')t=t.toUpperCase();
+if(type==='lower')t=t.toLowerCase();
+if(type==='title')t=t.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());
+if(type==='sentence')t=t.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g,c=>c.toUpperCase());
+input.value=t;
+message.textContent='Text converted!';
+}
+async function copyText(){
+try{await navigator.clipboard.writeText(input.value);message.textContent='Text copied!'}
+catch(e){input.select();message.textContent='Select Copy from your keyboard menu.'}
+}
+function clearText(){input.value='';message.textContent='Text cleared!';input.focus()}
+</script>
+</body>
+  </html>
